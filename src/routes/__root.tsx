@@ -182,9 +182,9 @@ function RootShell({ children }: { children: ReactNode }) {
         <style
           dangerouslySetInnerHTML={{
             __html: `
-              body{margin:0;background-color:#030014;color:#fff;font-family:'Space Grotesk',system-ui,sans-serif}
+              body{margin:0;background-color:#141416;color:#fff;font-family:'Space Grotesk',system-ui,sans-serif}
               *,*::before,*::after{box-sizing:border-box;border-color:rgba(255,255,255,0.1)}
-              ::selection{background:#ccff00;color:#000}
+              ::selection{background:#ff5a1f;color:#000}
               .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
             `,
           }}

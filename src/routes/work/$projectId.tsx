@@ -33,11 +33,11 @@ function WorkDetail() {
 
   if (!project) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#030014] text-white">
+      <div className="flex min-h-screen items-center justify-center bg-[#141416] text-white">
         <div className="text-center">
           <h1 className="text-4xl font-bold">404</h1>
           <p className="mt-4 text-white/50">Project not found</p>
-          <a href="/" className="mt-6 inline-block text-sm text-[#CCFF00] hover:underline">
+          <a href="/" className="mt-6 inline-block text-sm text-[#FF5A1F] hover:underline">
             Back to portfolio
           </a>
         </div>
@@ -49,9 +49,9 @@ function WorkDetail() {
   const StatusIcon = status.icon;
 
   return (
-    <div className="min-h-screen bg-[#030014] text-white">
+    <div className="min-h-screen bg-[#141416] text-white">
       {/* Header */}
-      <header className="sticky top-0 z-30 border-b border-white/5 bg-[#030014]/80 backdrop-blur-md">
+      <header className="sticky top-0 z-30 border-b border-white/5 bg-[#141416]/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4 sm:px-10">
           <a
             href="/"
@@ -64,7 +64,7 @@ function WorkDetail() {
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-[#CCFF00]"
+            className="flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-[#FF5A1F]"
           >
             GitHub
             <ArrowUpRight className="h-3.5 w-3.5" />
@@ -94,7 +94,7 @@ function WorkDetail() {
           </p>
 
           {project.metrics && (
-            <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-[#CCFF00]/20 bg-[#CCFF00]/5 px-4 py-2 text-sm text-[#CCFF00]/80">
+            <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-[#FF5A1F]/20 bg-[#FF5A1F]/5 px-4 py-2 text-sm text-[#FF5A1F]/80">
               {project.metrics}
             </div>
           )}
@@ -104,7 +104,7 @@ function WorkDetail() {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm text-white/70 transition-all hover:border-[#CCFF00]/50 hover:bg-[#CCFF00]/10 hover:text-[#CCFF00]"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm text-white/70 transition-all hover:border-[#FF5A1F]/50 hover:bg-[#FF5A1F]/10 hover:text-[#FF5A1F]"
             >
               <Github className="h-4 w-4" />
               See more on GitHub
@@ -147,7 +147,7 @@ function WorkDetail() {
           <div className="grid gap-16 lg:grid-cols-[2fr_1fr]">
             {/* Left: description */}
             <div>
-              <h2 className="text-xs uppercase text-[#CCFF00]/70">About this project</h2>
+              <h2 className="text-xs uppercase text-[#FF5A1F]/70">About this project</h2>
               <p className="mt-6 text-base leading-relaxed text-white/50 sm:text-lg">
                 {project.longDescription}
               </p>
@@ -178,7 +178,7 @@ function WorkDetail() {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-[#CCFF00]"
+                    className="flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-[#FF5A1F]"
                   >
                     View on GitHub
                     <ArrowUpRight className="h-3.5 w-3.5" />

@@ -51,8 +51,8 @@ export function ParticleBackground() {
       const velocities = new Float32Array(PARTICLE_COUNT * 3);
       const colors = new Float32Array(PARTICLE_COUNT * 3);
 
-      const base = new THREE.Color(0x001f3f);
-      const accent = new THREE.Color(0xccff00);
+      const base = new THREE.Color(0x2a1a10);
+      const accent = new THREE.Color(0xff5a1f);
 
       for (let i = 0; i < PARTICLE_COUNT; i++) {
         const i3 = i * 3;
@@ -101,7 +101,7 @@ export function ParticleBackground() {
       const lineGeo = new THREE.BufferGeometry();
       lineGeo.setAttribute("position", new THREE.BufferAttribute(linePositions, 3));
       const lineMat = new THREE.LineBasicMaterial({
-        color: 0x88aaff,
+        color: 0xff7a3f,
         transparent: true,
         opacity: 0.2,
         blending: THREE.AdditiveBlending,
