@@ -39,7 +39,7 @@ function PhoneMockup({ project }: { project: FeaturedProject }) {
           >
             <div>
               <div className="font-serif text-base font-medium text-white/60">{project.title}</div>
-              <div className="mt-2 text-[10px] uppercase tracking-wider text-white/25">
+              <div className="mt-2 text-[10px] uppercase text-white/25">
                 {project.category}
               </div>
               {project.metrics && (
@@ -67,10 +67,11 @@ export function WorkSection() {
   if (!activeProject) return null;
 
   return (
-    <section className="relative overflow-hidden bg-[#030014] px-5 py-24 sm:px-10 sm:py-32">
+    <section aria-labelledby="work-heading" className="relative overflow-hidden bg-[#030014] px-5 py-24 sm:px-10 sm:py-32">
       {/* Background grid */}
       <div
         className="pointer-events-none absolute inset-0 z-0 opacity-[0.03]"
+        aria-hidden="true"
         style={{
           backgroundImage:
             "linear-gradient(to right, rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.5) 1px, transparent 1px)",
@@ -84,8 +85,8 @@ export function WorkSection() {
       <div className="relative z-10 mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-16 flex flex-col gap-6 border-b border-white/5 pb-10 sm:flex-row sm:items-baseline sm:gap-12">
-          <h2 className="shrink-0 font-serif text-[clamp(2.5rem,6vw,44px)] font-medium italic text-white/90">
-            Work
+          <h2 id="work-heading" className="shrink-0 font-serif text-[clamp(2.5rem,6vw,44px)] font-medium italic text-white/90">
+            Featured Security Projects & Labs
           </h2>
           <p className="max-w-md text-sm leading-relaxed text-white/40">
             A selection of cybersecurity tools built for detection, response, and compliance across
@@ -101,26 +102,30 @@ export function WorkSection() {
               <button
                 key={project.id}
                 onClick={() => setActiveIndex(i)}
-                className={`w-full border-b border-white/5 py-5 text-left transition-colors ${
+                aria-label={`View project: ${project.title}, ${project.category}`}
+                aria-pressed={i === activeIndex}
+                className={`min-h-[44px] w-full border-b border-white/5 py-5 text-left transition-colors ${
                   i === activeIndex
                     ? "border-l-2 border-l-[#CCFF00] pl-6"
                     : "border-l-2 border-l-transparent pl-6 hover:border-l-white/20"
                 }`}
               >
-                <span
-                  className={`block font-serif text-xl font-medium transition-colors sm:text-2xl ${
-                    i === activeIndex ? "text-white" : "text-white/30"
-                  }`}
-                >
-                  {project.title}
-                </span>
-                <span
-                  className={`mt-1 block text-[11px] uppercase tracking-wider transition-colors ${
-                    i === activeIndex ? "text-white/50" : "text-white/20"
-                  }`}
-                >
-                  {project.category}
-                </span>
+                <div>
+                  <span
+                    className={`font-serif text-xl font-medium transition-colors sm:text-2xl ${
+                      i === activeIndex ? "text-white" : "text-white/50"
+                    }`}
+                  >
+                    {project.title}
+                  </span>
+                  <span
+                    className={`ml-2 text-[11px] uppercase transition-colors ${
+                      i === activeIndex ? "text-white/50" : "text-white/35"
+                    }`}
+                  >
+                    {project.category}
+                  </span>
+                </div>
               </button>
             ))}
           </div>
@@ -138,7 +143,8 @@ export function WorkSection() {
             {/* View details button */}
             <button
               onClick={() => handleNavigate(activeProject.id)}
-              className="absolute bottom-6 right-6 flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-4 py-2 text-xs text-white/60 backdrop-blur-sm transition-colors hover:border-[#CCFF00]/50 hover:text-[#CCFF00]"
+              aria-label={`View details for ${activeProject.title}`}
+              className="absolute bottom-6 right-6 flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-4 py-2.5 min-h-[44px] text-xs text-white/60 backdrop-blur-sm transition-colors hover:border-[#CCFF00]/50 hover:text-[#CCFF00]"
             >
               View Details
               <ArrowUpRight className="h-3 w-3" />

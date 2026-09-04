@@ -49,7 +49,7 @@ test("Work section shows all 6 projects", async ({ page }) => {
   await page.waitForTimeout(2000);
 
   // Check Work heading
-  const workHeading = page.locator("h2:has-text('Work')").first();
+  const workHeading = page.locator("h2:has-text('Featured Security Projects')").first();
   await workHeading.scrollIntoViewIfNeeded();
   await expect(workHeading).toBeVisible({ timeout: 10000 });
 

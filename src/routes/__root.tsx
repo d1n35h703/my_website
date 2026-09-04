@@ -77,22 +77,42 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Dinesh Dibbada - Cybersecurity Analyst Portfolio" },
+      {
+        title: "Dinesh Dibbada | Cybersecurity Analyst & Threat Detection",
+      },
       {
         name: "description",
         content:
-          "Cybersecurity analyst portfolio - SOC operations, SAP GRC, vulnerability assessment.",
+          "Cybersecurity Analyst specializing in SOC operations, threat detection, incident triage, and defensive security architecture. Protecting enterprise digital assets.",
       },
       { name: "author", content: "Dinesh Dibbada" },
-      { property: "og:title", content: "Dinesh Dibbada - Cybersecurity Analyst Portfolio" },
+      {
+        name: "robots",
+        content: "index, follow, max-image-preview:large, max-snippet:-1",
+      },
+      { property: "og:title", content: "Dinesh Dibbada | Cybersecurity Analyst & Threat Detection" },
       {
         property: "og:description",
         content:
-          "Cybersecurity analyst portfolio - SOC operations, SAP GRC, vulnerability assessment.",
+          "Cybersecurity Analyst specializing in SOC operations, threat detection, incident triage, and defensive security architecture.",
       },
-      { property: "og:type", content: "website" },
+      { property: "og:type", content: "profile" },
+      {
+        property: "og:url",
+        content: "https://dineshdibbada.dineshdibbada7.workers.dev",
+      },
+      { property: "og:site_name", content: "Dinesh Dibbada Portfolio" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Dinesh Dibbada | Cybersecurity Analyst" },
+      {
+        name: "twitter:description",
+        content:
+          "Cybersecurity Analyst specializing in SOC operations, threat detection, and defensive security architecture.",
+      },
+      {
+        name: "canonical",
+        content: "https://dineshdibbada.dineshdibbada7.workers.dev",
+      },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -106,6 +126,46 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      {
+        rel: "canonical",
+        href: "https://dineshdibbada.dineshdibbada7.workers.dev",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "ProfilePage",
+              "@id": "https://dineshdibbada.dineshdibbada7.workers.dev/#profile",
+              url: "https://dineshdibbada.dineshdibbada7.workers.dev",
+              name: "Dinesh Dibbada - Cybersecurity Analyst Portfolio",
+              dateModified: "2026-09-01",
+              mainEntity: {
+                "@type": "Person",
+                "@id": "https://dineshdibbada.dineshdibbada7.workers.dev/#identity",
+                name: "Dinesh Dibbada",
+                jobTitle: "Cybersecurity Analyst",
+                description:
+                  "Cybersecurity Analyst specializing in SOC operations, defensive architecture, threat detection, and security posture engineering.",
+                knowsAbout: [
+                  "Cybersecurity Operations",
+                  "SOC Analysis",
+                  "Incident Response",
+                  "Network Security",
+                  "Vulnerability Management",
+                ],
+                sameAs: [
+                  "https://github.com/dibbadadinesh",
+                  "https://www.linkedin.com/in/dibbadadinesh",
+                ],
+              },
+            },
+          ],
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -119,6 +179,16 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              body{margin:0;background-color:#030014;color:#fff;font-family:'Space Grotesk',system-ui,sans-serif}
+              *,*::before,*::after{box-sizing:border-box;border-color:rgba(255,255,255,0.1)}
+              ::selection{background:#ccff00;color:#000}
+              .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+            `,
+          }}
+        />
       </head>
       <body>
         {children}

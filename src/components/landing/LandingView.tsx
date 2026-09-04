@@ -89,7 +89,7 @@ export function LandingView({
               <a
                 key={item.href}
                 href={item.href}
-                className="min-h-[24px] py-1.5 text-xs uppercase text-white/55 transition-colors hover:text-[#CCFF00]"
+                className="min-h-[44px] flex items-center py-1.5 text-xs uppercase text-white/70 transition-colors hover:text-[#CCFF00]"
               >
                 {item.label}
               </a>
@@ -98,12 +98,13 @@ export function LandingView({
 
           <div className="flex items-center gap-2 sm:gap-3">
             <a
-              href={`mailto:${contact.email}`}
-              className="flex items-center gap-2 bg-[#CCFF00] px-4 py-2.5 text-[10px] uppercase text-black transition-opacity hover:opacity-85 sm:px-6"
+              href="#contact"
+              className="flex min-h-[44px] items-center gap-2 bg-[#CCFF00] px-4 py-2.5 text-[10px] uppercase text-black transition-opacity hover:opacity-85 sm:px-6"
+              aria-label="Get in touch"
             >
               <Mail className="h-3.5 w-3.5 sm:hidden" />
-              <span className="hidden sm:inline">Contact</span>
-              <span className="sm:hidden">Contact</span>
+              <span className="hidden sm:inline">Get in Touch</span>
+              <span className="sm:hidden">Get in Touch</span>
             </a>
           </div>
         </header>
@@ -115,9 +116,11 @@ export function LandingView({
         >
           <img
             src={heroSubject}
-            alt="Dinesh Dibbada"
+            alt="Dinesh Dibbada - Cybersecurity Analyst"
             width={1024}
             height={1536}
+            loading="eager"
+            fetchPriority="high"
             className="pointer-events-none absolute bottom-0 left-1/2 z-10 h-[78%] max-w-none -translate-x-1/2 object-contain object-bottom opacity-90 brightness-95 contrast-125 grayscale drop-shadow-[0_25px_50px_rgba(0,0,0,0.5)] sm:h-[88%] lg:h-[104%]"
           />
 
@@ -135,10 +138,7 @@ export function LandingView({
               </span>
             </h1>
 
-            <p
-              key={bioKey}
-              className="mx-auto mt-8 max-w-md text-sm leading-relaxed text-white/50 sm:max-w-lg sm:text-base"
-            >
+            <p className="hero-summary mx-auto mt-8 max-w-md text-sm leading-relaxed text-white/60 sm:max-w-lg sm:text-base" aria-label="About Dinesh Dibbada">
               {BIO.split("").map((char, index) => (
                 <m.span
                   key={`${bioKey}-${index}`}
@@ -149,6 +149,13 @@ export function LandingView({
                   {char}
                 </m.span>
               ))}
+            </p>
+
+            <p className="sr-only">
+              <strong>Dinesh Dibbada</strong> is a Cybersecurity Analyst focusing on defensive
+              security operations, threat hunting, and infrastructure protection. Experienced in
+              monitoring security events, triaging incidents, and implementing hardened architectures
+              to protect enterprise digital assets.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
@@ -175,7 +182,10 @@ export function LandingView({
         <section className="relative bg-[#030014]">
           <img
             src={heroSecurity}
-            alt="Security operations workstation"
+            alt="Security operations workstation with multiple monitors displaying threat analysis dashboards"
+            width={1920}
+            height={820}
+            loading="lazy"
             className="block aspect-[16/7] w-full object-cover opacity-60 grayscale"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#030014] via-transparent to-[#030014]" />
@@ -193,10 +203,10 @@ export function LandingView({
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="font-sans text-[clamp(2rem,5vw,4.5rem)] leading-[1.1] text-white">
               Securing digital infrastructure with{" "}
-              <span className="italic text-white/60">precision</span> and{" "}
-              <span className="italic text-white/60">measurable impact</span>.
+              <span className="italic text-white/70">precision</span> and{" "}
+              <span className="italic text-white/70">measurable impact</span>.
             </h2>
-            <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-white/50 sm:text-lg">
+            <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-white/60 sm:text-lg">
               {profile.aboutLead}
             </p>
           </div>
@@ -217,7 +227,7 @@ export function LandingView({
                 <div className="font-sans text-[clamp(3rem,8vw,6rem)] leading-none text-white">
                   {stat.value}
                 </div>
-                <p className="mt-4 max-w-[12ch] mx-auto text-[11px] uppercase leading-relaxed text-white/40">
+                <p className="mt-4 max-w-[12ch] mx-auto text-[11px] uppercase leading-relaxed text-white/50">
                   {stat.label}
                 </p>
               </div>
@@ -277,11 +287,11 @@ export function LandingView({
                   transition={{ duration: 0.5, delay: i * 0.08 }}
                   className="group bg-[#030014] p-10 transition-colors hover:bg-[#060028] sm:p-14"
                 >
-                  <span className="text-[10px] uppercase text-white/30">0{i + 1}</span>
+                  <span className="text-[10px] uppercase text-white/40">0{i + 1}</span>
                   <h3 className="mt-4 font-sans text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.1] text-white transition-colors group-hover:text-[#CCFF00]">
                     {service.title}
                   </h3>
-                  <p className="mt-4 text-sm leading-relaxed text-white/45 sm:text-base">
+                  <p className="mt-4 text-sm leading-relaxed text-white/55 sm:text-base">
                     {service.body}
                   </p>
                 </m.div>
@@ -299,7 +309,7 @@ export function LandingView({
               {skills.map((group) => (
                 <div key={group.label}>
                   <p className="text-[10px] uppercase text-[#CCFF00]/70">{group.label}</p>
-                  <ul className="mt-4 space-y-2 text-sm text-white/50">
+                  <ul className="mt-4 space-y-2 text-sm text-white/60">
                     {group.items.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
@@ -322,7 +332,7 @@ export function LandingView({
               className="mb-20 max-w-3xl"
             >
               <h2 className="font-sans text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.05] text-white">
-                Where I&apos;ve <span className="italic text-white/50">built</span>.
+                Technical Experience & <span className="italic text-white/50">Infrastructure</span>.
               </h2>
             </m.div>
 
@@ -343,10 +353,10 @@ export function LandingView({
                       <h3 className="font-sans text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.1] text-white transition-colors group-hover:text-[#CCFF00]">
                         {item.role}
                       </h3>
-                      <p className="mt-2 text-sm text-white/60">{item.company}</p>
-                      <p className="mt-1 text-[10px] uppercase text-white/30">{item.location}</p>
+                      <p className="mt-2 text-sm text-white/65">{item.company}</p>
+                      <p className="mt-1 text-[10px] uppercase text-white/40">{item.location}</p>
                     </div>
-                    <p className="text-sm leading-relaxed text-white/45 sm:text-base">
+                    <p className="text-sm leading-relaxed text-white/55 sm:text-base">
                       {item.note}
                     </p>
                   </div>
@@ -369,7 +379,7 @@ export function LandingView({
               className="mb-20 max-w-3xl"
             >
               <h2 className="font-sans text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.05] text-white">
-                Education & <span className="italic text-white/50">credentials</span>.
+                Education & <span className="italic text-white/60">credentials</span>.
               </h2>
             </m.div>
 
@@ -390,8 +400,8 @@ export function LandingView({
                         <h3 className="font-sans text-2xl text-white sm:text-3xl">{item.degree}</h3>
                         <span className="text-[10px] uppercase text-white/30">{item.year}</span>
                       </div>
-                      <p className="mt-2 text-sm text-white/50">{item.school}</p>
-                      <p className="mt-1 text-[10px] uppercase text-white/30">{item.location}</p>
+                      <p className="mt-2 text-sm text-white/60">{item.school}</p>
+                      <p className="mt-1 text-[10px] uppercase text-white/40">{item.location}</p>
                     </m.article>
                   ))}
                   <div className="border-t border-white/5" />
@@ -406,7 +416,7 @@ export function LandingView({
                       key={item}
                       className="flex items-baseline justify-between gap-4 border-t border-white/5 py-5"
                     >
-                      <span className="text-sm text-white/60">{item}</span>
+                      <span className="text-sm text-white/65">{item}</span>
                       <span className="shrink-0 text-[9px] uppercase text-[#CCFF00]/60">
                         Verified
                       </span>
@@ -428,7 +438,7 @@ export function LandingView({
                       className="border-t border-white/5 py-6"
                     >
                       <h3 className="font-sans text-lg text-white">{item.title}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-white/45">{item.note}</p>
+                      <p className="mt-2 text-sm leading-relaxed text-white/55">{item.note}</p>
                     </m.article>
                   ))}
                   <div className="border-t border-white/5" />
@@ -441,9 +451,10 @@ export function LandingView({
         {/* CONTACT */}
         <section
           id="contact"
+          aria-labelledby="contact-heading"
           className="relative overflow-hidden bg-[#030014] px-5 py-32 sm:px-10 sm:py-44"
         >
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(204,255,0,0.03),transparent_60%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(204,255,0,0.03),transparent_60%)]" aria-hidden="true" />
           <div className="relative mx-auto max-w-4xl text-center">
             <m.div
               initial="hidden"
@@ -452,41 +463,95 @@ export function LandingView({
               variants={sectionReveal}
               transition={{ duration: 0.7 }}
             >
-              <h2 className="font-sans text-[clamp(2.5rem,8vw,7rem)] leading-[1.05] text-white">
-                Let&apos;s <span className="italic text-white/50">strengthen</span> what matters.
+              <h2 id="contact-heading" className="font-sans text-[clamp(2.5rem,8vw,7rem)] leading-[1.05] text-white">
+                Let&apos;s <span className="italic text-white/60">strengthen</span> what matters.
               </h2>
-              <p className="mx-auto mt-8 max-w-lg text-base leading-relaxed text-white/45 sm:text-lg">
+              <p className="mx-auto mt-8 max-w-lg text-base leading-relaxed text-white/55 sm:text-lg">
                 {contact.replyTime}
               </p>
 
               <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
                 <a
                   href={`mailto:${contact.email}`}
-                  className="group flex items-center gap-3 border border-white/10 px-8 py-4 text-xs uppercase text-white transition-all hover:border-[#CCFF00]/50 hover:text-[#CCFF00]"
+                  className="group flex min-h-[44px] items-center gap-3 border border-white/15 px-8 py-4 text-xs uppercase text-white transition-all hover:border-[#CCFF00]/50 hover:text-[#CCFF00]"
                 >
                   {contact.email}
                   <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </a>
               </div>
 
+              {/* Contact Form */}
+              <form
+                action={`mailto:${contact.email}`}
+                method="post"
+                encType="text/plain"
+                className="mx-auto mt-16 max-w-lg space-y-6 text-left"
+              >
+                <div>
+                  <label htmlFor="contact-name" className="block text-xs uppercase text-white/50 mb-2">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="contact-name"
+                    name="name"
+                    required
+                    className="w-full min-h-[44px] rounded border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-[#CCFF00]/50 focus:outline-none focus:ring-1 focus:ring-[#CCFF00]/30"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="contact-email" className="block text-xs uppercase text-white/50 mb-2">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="contact-email"
+                    name="email"
+                    required
+                    className="w-full min-h-[44px] rounded border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-[#CCFF00]/50 focus:outline-none focus:ring-1 focus:ring-[#CCFF00]/30"
+                    placeholder="your@email.com"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="contact-message" className="block text-xs uppercase text-white/50 mb-2">
+                    Message
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    required
+                    rows={4}
+                    className="w-full rounded border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-[#CCFF00]/50 focus:outline-none focus:ring-1 focus:ring-[#CCFF00]/30"
+                    placeholder="How can I help you?"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full min-h-[44px] rounded bg-[#CCFF00] px-6 py-3 text-xs uppercase text-black transition-opacity hover:opacity-85"
+                >
+                  Send Message
+                </button>
+              </form>
+
               <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-xs text-white/30">
-                <a
-                  href={`https://${contact.linkedin}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="min-h-[24px] py-1 transition-colors hover:text-[#CCFF00]/70"
-                >
-                  LinkedIn
-                </a>
-                <span className="text-white/10">/</span>
-                <a
-                  href={`https://${contact.github}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="min-h-[24px] py-1 transition-colors hover:text-[#CCFF00]/70"
-                >
-                  GitHub
-                </a>
+              <a
+                href={`https://${contact.linkedin}`}
+                target="_blank"
+                rel="noreferrer"
+                className="min-h-[44px] flex items-center py-1 transition-colors hover:text-[#CCFF00]/70"
+              >
+                LinkedIn
+              </a>
+              <span className="text-white/20" aria-hidden="true">/</span>
+              <a
+                href={`https://${contact.github}`}
+                target="_blank"
+                rel="noreferrer"
+                className="min-h-[44px] flex items-center py-1 transition-colors hover:text-[#CCFF00]/70"
+              >
+                GitHub
+              </a>
                 <span className="text-white/10">/</span>
                 <span>{contact.location}</span>
               </div>
@@ -496,14 +561,14 @@ export function LandingView({
 
         {/* FOOTER */}
         <footer className="relative border-t border-white/5 bg-[#030014] px-5 py-10 sm:px-10">
-          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 text-[11px] text-white/25">
+          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 text-[11px] text-white/35">
             <span>&copy; 2026 {profile.name}</span>
             <div className="flex items-center gap-4">
               <span>{contact.location}</span>
               {onLogin && (
                 <button
                   onClick={onLogin}
-                  className="min-h-[24px] py-1 text-white/30 transition-colors hover:text-[#CCFF00]/70"
+                  className="min-h-[44px] py-1 text-white/50 transition-colors hover:text-[#CCFF00]/70"
                 >
                   inlog
                 </button>
