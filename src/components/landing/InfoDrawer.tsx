@@ -126,9 +126,7 @@ export function InfoDrawer({
                               <h3 className="font-display text-2xl uppercase text-white sm:text-3xl">
                                 {project.name}
                               </h3>
-                              <span className="text-xs text-[#CCFF00]">
-                                {project.metric}
-                              </span>
+                              <span className="text-xs text-[#CCFF00]">{project.metric}</span>
                             </div>
                             <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/60">
                               {project.blurb}

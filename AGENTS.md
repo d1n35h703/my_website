@@ -31,7 +31,7 @@ bun run lint      # eslint
 bun run format    # prettier --write .
 ```
 
-No test framework is configured. No CI workflows exist.
+No CI workflows exist.
 
 ## Routing
 
@@ -52,10 +52,11 @@ shadcn/ui with **new-york** style (see `components.json`). Base color: slate, CS
 ## Key Architecture
 
 - Dual-view portfolio: `useViewMode` hook toggles between `"agency"` and `"ubuntu"` modes.
-- Entry: `src/routes/index.tsx` renders `AgencyView` or `UbuntuView` with Framer Motion transitions.
+- Entry: `src/routes/index.tsx` renders `LandingView` or `UbuntuView` with Framer Motion transitions.
 - SSR server entry: `src/server.ts` wraps TanStack Start's server entry with h3 error recovery.
 - `src/start.ts` installs CSRF + error middleware for server functions.
 - Error capture: `src/lib/error-capture.ts` monkey-patches `console.error` to recover h3-swallowed errors (5s TTL window).
+- Lovable error reporting: `src/lib/lovable-error-reporting.ts` is imported by `__root.tsx` for client-side error capture.
 
 ## Lint Rules
 
@@ -66,22 +67,25 @@ shadcn/ui with **new-york** style (see `components.json`). Base color: slate, CS
 
 `bunfig.toml` enforces `minimumReleaseAge = 86400` (24h). Packages younger than 24h are skipped during install. Lovable packages are whitelisted in `minimumReleaseAgeExcludes` — confirm with user before adding new excludes.
 
-
 ## Automated Testing & Self-Correction Protocol
+
 Whenever you edit, refactor, or create UI components or styles:
-1. Execute the test command via your bash tool: `npm run test:appver`
+
+1. Execute the test command via your bash tool: `bun run test:appver`
+   - **Prerequisite:** A dev server must be running on port 8080 (`bun run dev`).
+   - Tests are Playwright specs in `tests/` that audit design constraints (hit targets, contrast, semantic tags).
 2. If tests pass (exit code 0), provide a concise summary of the changes.
 3. If tests fail or emit warnings:
-   - Do NOT stop or ask for user intervention.
-   - Parse the exact violations (e.g., hit-target sizes, contrast, missing semantic                  
-     tags, CSS layout issues).
+   - Parse the exact violations (e.g., hit-target sizes, contrast, missing semantic tags, CSS layout issues).
    - Locate the offending JSX/TSX elements or Tailwind classes in `src/`.
    - Apply the corrective fixes directly to the source code.
-   - Re-run `npm run test:appver`.
+   - Re-run `bun run test:appver`.
    - Repeat until the entire test suite passes cleanly with 0 violations.
 
 ## Design Rules Reference
-Strictly adhere to the design system in `SKILLS.md` (AppVer Interface Engineering & Design System):
+
+Strictly adhere to the design system (AppVer Interface Engineering & Design System):
+
 - Hit Targets: Minimum 44x44px for touch/mobile, minimum 24x24px for desktop interactive elements.
 - Fluid Motion: Physics-based springs over fixed CSS durations.
 - Materials: Translucent frosted glass with `backdrop-filter: blur(...)` on floating navigation.

@@ -79,9 +79,7 @@ function CarouselCard({
             </span>
           )}
         </div>
-        <p className="text-[10px] text-white/25 uppercase">
-          {project.category}
-        </p>
+        <p className="text-[10px] text-white/25 uppercase">{project.category}</p>
         <p className="text-[13px] leading-relaxed text-white/40 line-clamp-2">
           {project.description}
         </p>
@@ -214,9 +212,7 @@ export function FeaturedProjects() {
           transition={{ duration: 0.5 }}
           className="mx-auto max-w-5xl"
         >
-          <h2 className="font-sans text-3xl sm:text-4xl text-white/90 italic">
-            Featured Projects
-          </h2>
+          <h2 className="font-sans text-3xl sm:text-4xl text-white/90 italic">Featured Projects</h2>
         </m.div>
       </div>
 

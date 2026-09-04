@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { LazyMotion, m, domAnimation } from "framer-motion";
-import { ArrowDownToLine, ArrowUpRight, Mail, TerminalSquare } from "lucide-react";
+import { ArrowDownToLine, ArrowUpRight, Mail } from "lucide-react";
 import heroSubject from "@/assets/hero-subject.avif";
 import heroSecurity from "@/assets/dinesh-security-hero.jpg";
 import resumeAsset from "@/assets/dinesh-resume.pdf.asset.json";
@@ -16,7 +16,7 @@ import {
 } from "@/components/portfolio/data";
 import { ParticleBackground } from "./ParticleBackground";
 import { ScrambleText } from "./ScrambleText";
-import { FeaturedProjects } from "./FeaturedProjects";
+import { WorkSection } from "./WorkSection";
 import { InfoDrawer, type DrawerView } from "./InfoDrawer";
 
 const ROTATING = ["PURPOSE", "IMPACT", "INTENT"];
@@ -29,7 +29,13 @@ const sectionReveal = {
   visible: { opacity: 1, y: 0 },
 };
 
-export function LandingView({ onSwitchMode }: { onSwitchMode?: () => void }) {
+export function LandingView({
+  onSwitchMode,
+  onLogin,
+}: {
+  onSwitchMode?: () => void;
+  onLogin?: () => void;
+}) {
   const [wordIndex, setWordIndex] = useState(0);
   const [bioKey, setBioKey] = useState(0);
   const [mounted, setMounted] = useState(false);
@@ -67,9 +73,7 @@ export function LandingView({ onSwitchMode }: { onSwitchMode?: () => void }) {
             className="group flex items-center gap-3"
             aria-label="Dinesh Dibbada, home"
           >
-            <span className="font-display text-xl uppercase text-white sm:text-2xl">
-              Dinesh
-            </span>
+            <span className="font-display text-xl uppercase text-white sm:text-2xl">Dinesh</span>
             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#CCFF00] text-black transition-transform duration-500 group-hover:rotate-180">
               &#10022;
             </span>
@@ -77,7 +81,7 @@ export function LandingView({ onSwitchMode }: { onSwitchMode?: () => void }) {
 
           <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation">
             {[
-              { href: "#impact", label: "IMPACT" },
+              { href: "#work", label: "WORK" },
               { href: "#expertise", label: "EXPERTISE" },
               { href: "#experience", label: "EXPERIENCE" },
               { href: "#contact", label: "CONTACT" },
@@ -93,16 +97,6 @@ export function LandingView({ onSwitchMode }: { onSwitchMode?: () => void }) {
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-3">
-            {onSwitchMode && (
-              <button
-                type="button"
-                onClick={onSwitchMode}
-                className="flex items-center gap-2 border border-white/15 px-3 py-2.5 text-[10px] uppercase text-white/70 transition-colors hover:border-[#CCFF00] hover:text-[#CCFF00] sm:px-4"
-              >
-                <TerminalSquare className="h-3.5 w-3.5" />
-                <span className="hidden sm:inline">Ubuntu OS</span>
-              </button>
-            )}
             <a
               href={`mailto:${contact.email}`}
               className="flex items-center gap-2 bg-[#CCFF00] px-4 py-2.5 text-[10px] uppercase text-black transition-opacity hover:opacity-85 sm:px-6"
@@ -231,8 +225,10 @@ export function LandingView({ onSwitchMode }: { onSwitchMode?: () => void }) {
           </div>
         </m.section>
 
-        {/* SELECTED WORK - rotating carousel */}
-        <FeaturedProjects />
+        {/* SELECTED WORK */}
+        <div id="work">
+          <WorkSection />
+        </div>
 
         {/* EXPERTISE */}
         <section
@@ -281,9 +277,7 @@ export function LandingView({ onSwitchMode }: { onSwitchMode?: () => void }) {
                   transition={{ duration: 0.5, delay: i * 0.08 }}
                   className="group bg-[#030014] p-10 transition-colors hover:bg-[#060028] sm:p-14"
                 >
-                  <span className="text-[10px] uppercase text-white/30">
-                    0{i + 1}
-                  </span>
+                  <span className="text-[10px] uppercase text-white/30">0{i + 1}</span>
                   <h3 className="mt-4 font-sans text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.1] text-white transition-colors group-hover:text-[#CCFF00]">
                     {service.title}
                   </h3>
@@ -304,9 +298,7 @@ export function LandingView({ onSwitchMode }: { onSwitchMode?: () => void }) {
             >
               {skills.map((group) => (
                 <div key={group.label}>
-                  <p className="text-[10px] uppercase text-[#CCFF00]/70">
-                    {group.label}
-                  </p>
+                  <p className="text-[10px] uppercase text-[#CCFF00]/70">{group.label}</p>
                   <ul className="mt-4 space-y-2 text-sm text-white/50">
                     {group.items.map((item) => (
                       <li key={item}>{item}</li>
@@ -346,17 +338,13 @@ export function LandingView({ onSwitchMode }: { onSwitchMode?: () => void }) {
                   className="group border-t border-white/5 py-12 transition-colors hover:bg-white/[0.01] sm:py-16"
                 >
                   <div className="grid gap-6 sm:grid-cols-[14rem_1fr] lg:grid-cols-[16rem_1fr_1.2fr]">
-                    <span className="text-xs uppercase text-[#CCFF00]/70">
-                      {item.year}
-                    </span>
+                    <span className="text-xs uppercase text-[#CCFF00]/70">{item.year}</span>
                     <div>
                       <h3 className="font-sans text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.1] text-white transition-colors group-hover:text-[#CCFF00]">
                         {item.role}
                       </h3>
                       <p className="mt-2 text-sm text-white/60">{item.company}</p>
-                      <p className="mt-1 text-[10px] uppercase text-white/30">
-                        {item.location}
-                      </p>
+                      <p className="mt-1 text-[10px] uppercase text-white/30">{item.location}</p>
                     </div>
                     <p className="text-sm leading-relaxed text-white/45 sm:text-base">
                       {item.note}
@@ -399,17 +387,11 @@ export function LandingView({ onSwitchMode }: { onSwitchMode?: () => void }) {
                       className="border-t border-white/5 py-8"
                     >
                       <div className="flex flex-wrap items-baseline justify-between gap-3">
-                        <h3 className="font-sans text-2xl text-white sm:text-3xl">
-                          {item.degree}
-                        </h3>
-                        <span className="text-[10px] uppercase text-white/30">
-                          {item.year}
-                        </span>
+                        <h3 className="font-sans text-2xl text-white sm:text-3xl">{item.degree}</h3>
+                        <span className="text-[10px] uppercase text-white/30">{item.year}</span>
                       </div>
                       <p className="mt-2 text-sm text-white/50">{item.school}</p>
-                      <p className="mt-1 text-[10px] uppercase text-white/30">
-                        {item.location}
-                      </p>
+                      <p className="mt-1 text-[10px] uppercase text-white/30">{item.location}</p>
                     </m.article>
                   ))}
                   <div className="border-t border-white/5" />
@@ -417,9 +399,7 @@ export function LandingView({ onSwitchMode }: { onSwitchMode?: () => void }) {
               </div>
 
               <div>
-                <p className="mb-6 text-[10px] uppercase text-[#CCFF00]/70">
-                  Certifications
-                </p>
+                <p className="mb-6 text-[10px] uppercase text-[#CCFF00]/70">Certifications</p>
                 <div className="space-y-0">
                   {certifications.map((item) => (
                     <div
@@ -435,9 +415,7 @@ export function LandingView({ onSwitchMode }: { onSwitchMode?: () => void }) {
                   <div className="border-t border-white/5" />
                 </div>
 
-                <p className="mb-6 mt-14 text-[10px] uppercase text-[#CCFF00]/70">
-                  Volunteering
-                </p>
+                <p className="mb-6 mt-14 text-[10px] uppercase text-[#CCFF00]/70">Volunteering</p>
                 <div className="space-y-0">
                   {volunteering.map((item) => (
                     <m.article
@@ -520,7 +498,17 @@ export function LandingView({ onSwitchMode }: { onSwitchMode?: () => void }) {
         <footer className="relative border-t border-white/5 bg-[#030014] px-5 py-10 sm:px-10">
           <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 text-[11px] text-white/25">
             <span>&copy; 2026 {profile.name}</span>
-            <span>{contact.location}</span>
+            <div className="flex items-center gap-4">
+              <span>{contact.location}</span>
+              {onLogin && (
+                <button
+                  onClick={onLogin}
+                  className="min-h-[24px] py-1 text-white/30 transition-colors hover:text-[#CCFF00]/70"
+                >
+                  inlog
+                </button>
+              )}
+            </div>
           </div>
         </footer>
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
-import { Battery, ChevronDown, MonitorSmartphone, Plus, Search, Volume2, Wifi } from "lucide-react";
+import { Battery, ChevronDown, Plus, Search, Volume2, Wifi } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Window } from "./Window";
 import { TerminalApp } from "./Terminal";
@@ -12,7 +12,10 @@ import {
   SettingsApp,
   appTitles,
   dockApps,
+  getStoredCustomApps,
+  saveCustomApps,
   type AppId,
+  type CustomApp,
 } from "./apps";
 import { defaultApps, APP_CATEGORIES, getStoredApps, type AppEntry } from "./apps.config";
 import { AddServiceModal } from "./AddServiceModal";
@@ -31,6 +34,7 @@ export function UbuntuView({ onSwitchMode }: { onSwitchMode?: () => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
   const [apps, setApps] = useState<AppEntry[]>([]);
+  const [customApps, setCustomApps] = useState<CustomApp[]>([]);
   const [searchQuery, setSearchQuery] = useState(false);
   const zRef = useRef(10);
   const spawnRef = useRef(0);
@@ -44,9 +48,27 @@ export function UbuntuView({ onSwitchMode }: { onSwitchMode?: () => void }) {
 
   useEffect(() => {
     setApps(getStoredApps());
+    setCustomApps(getStoredCustomApps());
   }, []);
 
   const refreshApps = () => setApps(getStoredApps());
+
+  const addCustomApp = (name: string, url: string) => {
+    const newApp: CustomApp = {
+      id: `custom-${Date.now()}`,
+      name,
+      url,
+    };
+    const updated = [...customApps, newApp];
+    setCustomApps(updated);
+    saveCustomApps(updated);
+  };
+
+  const removeCustomApp = (id: string) => {
+    const updated = customApps.filter((a) => a.id !== id);
+    setCustomApps(updated);
+    saveCustomApps(updated);
+  };
 
   const open = (id: AppId) => {
     setWins((prev) => {
@@ -91,7 +113,13 @@ export function UbuntuView({ onSwitchMode }: { onSwitchMode?: () => void }) {
       case "contact":
         return <ContactApp />;
       case "settings":
-        return <SettingsApp />;
+        return (
+          <SettingsApp
+            customApps={customApps}
+            onAddApp={addCustomApp}
+            onRemoveApp={removeCustomApp}
+          />
+        );
     }
   };
 
@@ -120,15 +148,6 @@ export function UbuntuView({ onSwitchMode }: { onSwitchMode?: () => void }) {
           {clock.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" })}
         </span>
         <div className="relative flex shrink-0 items-center gap-2">
-          {onSwitchMode && (
-            <button
-              onClick={onSwitchMode}
-              className="flex items-center gap-1 rounded px-1.5 py-0.5 hover:bg-zinc-800"
-            >
-              <MonitorSmartphone className="h-3.5 w-3.5 text-primary" />
-              <span className="hidden sm:inline">Agency View</span>
-            </button>
-          )}
           <button
             onClick={() => setSearchQuery((v) => !v)}
             className="flex items-center gap-1 rounded px-1.5 py-0.5 hover:bg-zinc-800"
@@ -327,9 +346,7 @@ export function UbuntuView({ onSwitchMode }: { onSwitchMode?: () => void }) {
             {wins.length === 0 && (
               <div className="pointer-events-none absolute inset-0 grid place-items-center px-6 text-center">
                 <div>
-                  <p className="text-sm text-zinc-400">
-                    Double-click the dock to launch an app
-                  </p>
+                  <p className="text-sm text-zinc-400">Double-click the dock to launch an app</p>
                   <p className="mt-1 text-xs text-zinc-500">
                     or start with the Terminal and type <span className="text-primary">help</span>
                   </p>

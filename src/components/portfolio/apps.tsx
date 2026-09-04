@@ -1,7 +1,24 @@
-import { Cpu, Folder, Mail, Settings, Terminal, User } from "lucide-react";
+import { useState } from "react";
+import {
+  Cpu,
+  ExternalLink,
+  Folder,
+  Mail,
+  Plus,
+  Settings,
+  Terminal,
+  Trash2,
+  User,
+} from "lucide-react";
 import { aboutText, contact, experience, projects, services, stats } from "./data";
 
 export type AppId = "terminal" | "projects" | "about" | "services" | "contact" | "settings";
+
+export type CustomApp = {
+  id: string;
+  name: string;
+  url: string;
+};
 
 export const dockApps: { id: AppId; label: string; icon: typeof Terminal }[] = [
   { id: "terminal", label: "Terminal", icon: Terminal },
@@ -20,6 +37,21 @@ export const appTitles: Record<AppId, string> = {
   contact: "Contact",
   settings: "Settings",
 };
+
+const STORAGE_KEY = "portfolio-custom-apps";
+
+export function getStoredCustomApps(): CustomApp[] {
+  if (typeof window === "undefined") return [];
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+export function saveCustomApps(apps: CustomApp[]) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(apps));
+}
 
 export function ProjectsApp() {
   return (
@@ -119,15 +151,103 @@ export function ContactApp() {
   );
 }
 
-export function SettingsApp() {
+export function SettingsApp({
+  customApps,
+  onAddApp,
+  onRemoveApp,
+}: {
+  customApps: CustomApp[];
+  onAddApp: (name: string, url: string) => void;
+  onRemoveApp: (id: string) => void;
+}) {
+  const [name, setName] = useState("");
+  const [url, setUrl] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (name.trim() && url.trim()) {
+      onAddApp(name.trim(), url.trim());
+      setName("");
+      setUrl("");
+    }
+  };
+
   return (
-    <div className="space-y-3 p-4 text-sm">
+    <div className="space-y-4 p-4 text-sm">
+      {/* System info */}
       <div className="rounded-lg border border-border p-4">
         <div className="font-medium">portfolio-os 24.04 LTS</div>
         <div className="mt-1 text-xs text-muted-foreground">
           GNOME 46 · React 19 · TanStack Start
         </div>
       </div>
+
+      {/* Add custom app */}
+      <div className="rounded-lg border border-border p-4">
+        <div className="mb-3 font-medium">Add Custom App</div>
+        <form onSubmit={handleSubmit} className="space-y-2">
+          <input
+            type="text"
+            placeholder="App name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full rounded-md border border-border bg-background px-3 py-1.5 text-sm outline-none focus:border-primary"
+          />
+          <input
+            type="url"
+            placeholder="https://example.com"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            className="w-full rounded-md border border-border bg-background px-3 py-1.5 text-sm outline-none focus:border-primary"
+          />
+          <button
+            type="submit"
+            disabled={!name.trim() || !url.trim()}
+            className="flex w-full items-center justify-center gap-2 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-40"
+          >
+            <Plus className="h-3.5 w-3.5" />
+            Add App
+          </button>
+        </form>
+      </div>
+
+      {/* Custom apps list */}
+      {customApps.length > 0 && (
+        <div className="rounded-lg border border-border p-4">
+          <div className="mb-3 font-medium">Your Apps</div>
+          <div className="space-y-2">
+            {customApps.map((app) => (
+              <div
+                key={app.id}
+                className="flex items-center justify-between rounded-md border border-border bg-background/50 px-3 py-2"
+              >
+                <div className="min-w-0 flex-1">
+                  <div className="truncate text-sm">{app.name}</div>
+                  <div className="truncate text-[11px] text-muted-foreground">{app.url}</div>
+                </div>
+                <div className="flex items-center gap-1">
+                  <a
+                    href={app.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded p-1 text-muted-foreground hover:text-primary"
+                  >
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                  <button
+                    onClick={() => onRemoveApp(app.id)}
+                    className="rounded p-1 text-muted-foreground hover:text-red-500"
+                  >
+                    <Trash2 className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Tip */}
       <div className="rounded-lg border border-border p-4 text-xs text-muted-foreground">
         Tip: drag window title bars, use the dock to launch apps, or type
         <span className="text-primary"> help </span> in the terminal.

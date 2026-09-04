@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { AnimatePresence, LazyMotion, m, domAnimation } from "framer-motion";
 import { MonitorSmartphone } from "lucide-react";
 import { useViewMode } from "@/hooks/useViewMode";
 import { LandingView } from "@/components/landing/LandingView";
 import { UbuntuView } from "@/components/portfolio/UbuntuView";
+import { LoginScreen } from "@/components/login/LoginScreen";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,7 +30,17 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const { mode, toggle } = useViewMode();
+  const { mode, setMode, toggle } = useViewMode();
+  const [showLogin, setShowLogin] = useState(false);
+
+  const handleLoginSuccess = () => {
+    setShowLogin(false);
+    setMode("ubuntu");
+  };
+
+  if (showLogin) {
+    return <LoginScreen onAuthenticated={handleLoginSuccess} />;
+  }
 
   return (
     <main className="relative min-h-screen bg-background">
@@ -54,7 +66,7 @@ function Index() {
             transition={{ duration: 0.35 }}
           >
             {mode === "agency" ? (
-              <LandingView onSwitchMode={toggle} />
+              <LandingView onSwitchMode={toggle} onLogin={() => setShowLogin(true)} />
             ) : (
               <UbuntuView onSwitchMode={toggle} />
             )}
