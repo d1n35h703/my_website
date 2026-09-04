@@ -23,7 +23,7 @@ const MENU: { id: DrawerView; label: string }[] = [
 ];
 
 const field =
-  "w-full border-0 border-b border-white/25 bg-transparent px-0 py-3 font-sans text-base text-white placeholder:text-white/35 outline-none transition-colors focus:border-[#CCFF00]";
+  "w-full border-0 border-b border-white/25 bg-transparent px-0 py-3 font-sans text-base text-white placeholder:text-white/35 outline-none transition-colors focus:border-[#FF5A1F]";
 
 export function InfoDrawer({
   open,
@@ -68,7 +68,7 @@ export function InfoDrawer({
               <button
                 type="button"
                 onClick={() => onViewChange("menu")}
-                className="flex items-center gap-2 text-xs tracking-[0.2em] text-white/70 transition-colors hover:text-[#CCFF00]"
+                className="flex items-center gap-2 text-xs tracking-[0.2em] text-white/70 transition-colors hover:text-[#FF5A1F]"
               >
                 {view === "menu" ? <Menu className="h-4 w-4" /> : <ArrowLeft className="h-4 w-4" />}
                 {view === "menu" ? "MENU" : "BACK"}
@@ -77,7 +77,7 @@ export function InfoDrawer({
                 type="button"
                 onClick={onClose}
                 aria-label="Close menu"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-[#CCFF00] hover:text-[#CCFF00]"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:border-[#FF5A1F] hover:text-[#FF5A1F]"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -102,7 +102,7 @@ export function InfoDrawer({
                               onClick={() => onViewChange(item.id)}
                               className="group flex w-full items-center justify-between py-6 text-left"
                             >
-                              <span className="font-display text-4xl uppercase tracking-wide text-white transition-colors group-hover:text-[#CCFF00] sm:text-6xl">
+                              <span className="font-display text-4xl uppercase tracking-wide text-white transition-colors group-hover:text-[#FF5A1F] sm:text-6xl">
                                 {item.label}
                               </span>
                               <span className="text-xs text-white/40">0{index + 1}</span>
@@ -126,7 +126,7 @@ export function InfoDrawer({
                               <h3 className="font-display text-2xl uppercase text-white sm:text-3xl">
                                 {project.name}
                               </h3>
-                              <span className="text-xs text-[#CCFF00]">{project.metric}</span>
+                              <span className="text-xs text-[#FF5A1F]">{project.metric}</span>
                             </div>
                             <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/60">
                               {project.blurb}
@@ -152,7 +152,7 @@ export function InfoDrawer({
                       <ul className="space-y-8">
                         {experience.map((item) => (
                           <li key={item.company} className="border-b border-white/10 pb-8">
-                            <p className="text-xs text-[#CCFF00]">{item.year}</p>
+                            <p className="text-xs text-[#FF5A1F]">{item.year}</p>
                             <h3 className="mt-3 font-display text-2xl uppercase text-white">
                               {item.role}
                             </h3>
@@ -176,7 +176,7 @@ export function InfoDrawer({
                       <div className="mt-10 grid gap-8 sm:grid-cols-2">
                         {skills.map((group) => (
                           <div key={group.label}>
-                            <p className="text-[10px] uppercase tracking-[0.25em] text-[#CCFF00]">
+                            <p className="text-[10px] uppercase tracking-[0.25em] text-[#FF5A1F]">
                               {group.label}
                             </p>
                             <ul className="mt-3 space-y-1 text-sm text-white/60">
@@ -205,7 +205,7 @@ export function InfoDrawer({
                           </li>
                         ))}
                       </ul>
-                      <p className="mt-8 text-[10px] uppercase tracking-[0.25em] text-[#CCFF00]">
+                      <p className="mt-8 text-[10px] uppercase tracking-[0.25em] text-[#FF5A1F]">
                         Certifications
                       </p>
                       <ul className="mt-3 space-y-2 text-sm text-white/60">
@@ -216,7 +216,7 @@ export function InfoDrawer({
                       <a
                         href={resumeAsset.url}
                         download="Dinesh-Dibbada-Resume.pdf"
-                        className="mt-10 inline-flex items-center gap-2 bg-[#CCFF00] px-6 py-3 text-xs uppercase tracking-[0.2em] text-black transition-opacity hover:opacity-85"
+                        className="mt-10 inline-flex items-center gap-2 bg-[#FF5A1F] px-6 py-3 text-xs uppercase tracking-[0.2em] text-black transition-opacity hover:opacity-85"
                       >
                         Download PDF <ArrowUpRight className="h-4 w-4" />
                       </a>
@@ -226,8 +226,8 @@ export function InfoDrawer({
                   {view === "work" && (
                     <Panel title="LET'S WORK">
                       {sent ? (
-                        <div className="flex items-center gap-3 border border-[#CCFF00]/40 px-5 py-4 text-sm text-white/80">
-                          <Check className="h-4 w-4 text-[#CCFF00]" />
+                        <div className="flex items-center gap-3 border border-[#FF5A1F]/40 px-5 py-4 text-sm text-white/80">
+                          <Check className="h-4 w-4 text-[#FF5A1F]" />
                           Thanks - your message is ready to send to {contact.email}.
                         </div>
                       ) : (
@@ -249,7 +249,7 @@ export function InfoDrawer({
                           <textarea className={field} rows={4} placeholder="Tell me about it" />
                           <button
                             type="submit"
-                            className="inline-flex items-center gap-2 bg-[#CCFF00] px-8 py-4 text-xs uppercase tracking-[0.2em] text-black transition-opacity hover:opacity-85"
+                            className="inline-flex items-center gap-2 bg-[#FF5A1F] px-8 py-4 text-xs uppercase tracking-[0.2em] text-black transition-opacity hover:opacity-85"
                           >
                             Send message <ArrowUpRight className="h-4 w-4" />
                           </button>
@@ -270,7 +270,7 @@ export function InfoDrawer({
 function Panel({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section>
-      <h2 className="mb-8 font-display text-5xl uppercase tracking-wide text-[#CCFF00] sm:text-7xl">
+      <h2 className="mb-8 font-display text-5xl uppercase tracking-wide text-[#FF5A1F] sm:text-7xl">
         {title}
       </h2>
       {children}

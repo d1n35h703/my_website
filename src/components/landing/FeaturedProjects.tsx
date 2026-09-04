@@ -25,7 +25,7 @@ function ScanlineOverlay() {
   );
 }
 
-function GlowOrb({ color = "#CCFF00" }: { color?: string }) {
+function GlowOrb({ color = "#FF5A1F" }: { color?: string }) {
   return (
     <div
       className="absolute -bottom-6 left-1/2 h-12 w-32 -translate-x-1/2 rounded-full blur-2xl opacity-20"
@@ -96,7 +96,7 @@ function CarouselCard({
       </div>
 
       {/* Bottom glow line on hover */}
-      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#CCFF00]/0 to-transparent group-hover:via-[#CCFF00]/20 transition-all" />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#FF5A1F]/0 to-transparent group-hover:via-[#FF5A1F]/20 transition-all" />
     </a>
   );
 }
@@ -295,7 +295,7 @@ export function FeaturedProjects() {
       </div>
 
       {/* Ambient glow */}
-      <div className="pointer-events-none absolute right-0 top-1/3 h-64 w-64 rounded-full bg-[#CCFF00]/[0.02] blur-[100px]" />
+      <div className="pointer-events-none absolute right-0 top-1/3 h-64 w-64 rounded-full bg-[#FF5A1F]/[0.02] blur-[100px]" />
     </section>
   );
 }

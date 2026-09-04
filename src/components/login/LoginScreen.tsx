@@ -93,7 +93,7 @@ export function LoginScreen({ onAuthenticated }: LoginScreenProps) {
     <div className="relative flex min-h-screen items-center justify-center bg-[#0a0a0f] px-4">
       {/* Ambient glow */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-1/3 h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#CCFF00]/[0.02] blur-[120px]" />
+        <div className="absolute left-1/2 top-1/3 h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#FF5A1F]/[0.02] blur-[120px]" />
       </div>
 
       <m.div
@@ -163,8 +163,8 @@ export function LoginScreen({ onAuthenticated }: LoginScreenProps) {
                           error
                             ? "border-red-500/60 animate-pulse"
                             : digit
-                              ? "border-[#CCFF00]/40 bg-[#CCFF00]/5"
-                              : "border-white/10 focus:border-[#CCFF00]/50"
+                              ? "border-[#FF5A1F]/40 bg-[#FF5A1F]/5"
+                              : "border-white/10 focus:border-[#FF5A1F]/50"
                         }`}
                       />
                     ))}

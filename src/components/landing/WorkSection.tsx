@@ -43,7 +43,7 @@ function PhoneMockup({ project }: { project: FeaturedProject }) {
                 {project.category}
               </div>
               {project.metrics && (
-                <div className="mt-3 rounded-full border border-white/10 px-2 py-0.5 text-[9px] text-[#CCFF00]/60">
+                <div className="mt-3 rounded-full border border-white/10 px-2 py-0.5 text-[9px] text-[#FF5A1F]/60">
                   {project.metrics}
                 </div>
               )}
@@ -67,7 +67,7 @@ export function WorkSection() {
   if (!activeProject) return null;
 
   return (
-    <section aria-labelledby="work-heading" className="relative overflow-hidden bg-[#030014] px-5 py-24 sm:px-10 sm:py-32">
+    <section aria-labelledby="work-heading" className="relative overflow-hidden bg-[#141416] px-5 py-24 sm:px-10 sm:py-32">
       {/* Background grid */}
       <div
         className="pointer-events-none absolute inset-0 z-0 opacity-[0.03]"
@@ -106,7 +106,7 @@ export function WorkSection() {
                 aria-pressed={i === activeIndex}
                 className={`min-h-[44px] w-full border-b border-white/5 py-5 text-left transition-colors ${
                   i === activeIndex
-                    ? "border-l-2 border-l-[#CCFF00] pl-6"
+                    ? "border-l-2 border-l-[#FF5A1F] pl-6"
                     : "border-l-2 border-l-transparent pl-6 hover:border-l-white/20"
                 }`}
               >
@@ -144,7 +144,7 @@ export function WorkSection() {
             <button
               onClick={() => handleNavigate(activeProject.id)}
               aria-label={`View details for ${activeProject.title}`}
-              className="absolute bottom-6 right-6 flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-4 py-2.5 min-h-[44px] text-xs text-white/60 backdrop-blur-sm transition-colors hover:border-[#CCFF00]/50 hover:text-[#CCFF00]"
+              className="absolute bottom-6 right-6 flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-4 py-2.5 min-h-[44px] text-xs text-white/60 backdrop-blur-sm transition-colors hover:border-[#FF5A1F]/50 hover:text-[#FF5A1F]"
             >
               View Details
               <ArrowUpRight className="h-3 w-3" />

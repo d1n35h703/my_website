@@ -119,7 +119,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Anton&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@300;400;500;600;700;800&display=swap",
       },
       {
         rel: "stylesheet",
@@ -182,9 +182,9 @@ function RootShell({ children }: { children: ReactNode }) {
         <style
           dangerouslySetInnerHTML={{
             __html: `
-              body{margin:0;background-color:#030014;color:#fff;font-family:'Space Grotesk',system-ui,sans-serif}
+              body{margin:0;background-color:#0E0E10;color:#fff;font-family:'Sora',system-ui,sans-serif}
               *,*::before,*::after{box-sizing:border-box;border-color:rgba(255,255,255,0.1)}
-              ::selection{background:#ccff00;color:#000}
+              ::selection{background:#ff5a1f;color:#000}
               .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
             `,
           }}
